@@ -1,22 +1,18 @@
 package com.example.demo.app.property;
 
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 
 public class PropertyForm {
 	
 	@NotNull
 	private String propertyName;
-	@Max(10)
 	private String postalCode;
 	@NotNull
 	private String address;
 	@NotNull
-	@Max(15)
 	private String tel1;
 	private String tel12;
-	@Max(15)
 	private String fax;
 	@Email(message = "Invalid E-mail Format")
 	private String email;
