@@ -12,7 +12,7 @@ public class PropertyForm {
 	private String address;
 	@NotNull
 	private String tel1;
-	private String tel12;
+	private String tel2;
 	private String fax;
 	@Email(message = "Invalid E-mail Format")
 	private String email;
@@ -56,12 +56,12 @@ public class PropertyForm {
 		this.tel1 = tel1;
 	}
 
-	public String getTel12() {
-		return tel12;
+	public String getTel2() {
+		return tel2;
 	}
 
-	public void setTel12(String tel12) {
-		this.tel12 = tel12;
+	public void setTel2(String tel2) {
+		this.tel2 = tel2;
 	}
 
 	public String getFax() {
