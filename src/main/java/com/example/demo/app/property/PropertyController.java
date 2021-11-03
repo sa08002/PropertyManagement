@@ -18,6 +18,12 @@ public class PropertyController {
 		return "property/form";
 	}
 	
+	@PostMapping("/form")
+	public String formGoBack(PropertyForm propertyForm, Model model) {
+		model.addAttribute("title", "Inquiry Form");
+		return "property/form"; 
+	}
+	
 	@PostMapping("/confirm")
 	public String confirm(@Validated PropertyForm propertyForm,
 			BindingResult result,

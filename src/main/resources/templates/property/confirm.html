@@ -31,6 +31,20 @@
 <h3>詳細2</h3>
 <p th:text="*{detail2}"></p>
 
+<form method="post" action="#" th:action="@{/property/form}">
+	<input type="hidden" name="propertyName" th:value="*{propertyName}">
+	<input type="hidden" name="postalCode" th:value="*{postalCode}">
+	<input type="hidden" name="address" th:value="*{address}">
+	<input type="hidden" name="tel1" th:value="*{tel1}">
+	<input type="hidden" name="tel2" th:value="*{tel2}">
+	<input type="hidden" name="fax" th:value="*{fax}">
+	<input type="hidden" name="email" th:value="*{email}">
+	<input type="hidden" name="salesOffice" th:value="*{salesOffice}">
+	<input type="hidden" name="detail1" th:value="*{detail1}">
+	<input type="hidden" name="detail2" th:value="*{detail2}">
+	<input type="submit" value="戻る">
+</form>
+
 
 </div>
 </body>
