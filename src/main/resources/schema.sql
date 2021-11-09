@@ -1,17 +1,11 @@
 CREATE TABLE property
 (
 	id INT NOT NULL AUTO_INCREMENT,
-	property_id VARCHAR(12) NOT NULL,
 	property_name VARCHAR(100) NOT NULL,
-	postal_code VARCHAR(10) NOT NULL,
 	address VARCHAR(100) NOT NULL,
 	tel1 VARCHAR(16) NOT NULL,
-	tel2 VARCHAR(16),
-	fax VARCHAR(16),
 	email VARCHAR(100),
-	sales_office VARCHAR(20) NOT NULL,
 	detail1 VARCHAR(500),
-	detail2 VARCHAR(500),
 	created DATETIME NOT NULL,
 	PRIMARY KEY(id)
 );

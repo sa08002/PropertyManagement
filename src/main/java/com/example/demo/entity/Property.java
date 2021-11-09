@@ -1,21 +1,38 @@
-package com.example.demo.app.property;
+package com.example.demo.entity;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 
-public class PropertyForm {
+public class Property {
 	
-	@NotNull
+	private int id;
 	private String propertyName;
-	@NotNull
 	private String address;
-	@NotNull
 	private String tel1;
-	@Email(message = "Invalid E-mail Format")
 	private String email;
 	private String detail1;
+	private LocalDateTime created;
 	
-	public PropertyForm() {
+	public Property() {}
+	
+	public Property(int id, String propertyName,  String address, 
+			String tel1, String email, 
+			String detail1, LocalDateTime created) {
+		super();
+		this.id = id;
+		this.propertyName = propertyName;
+		this.address = address;
+		this.tel1 = tel1;
+		this.email = email;
+		this.detail1 = detail1;
+		this.created = created;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getPropertyName() {
@@ -58,5 +75,12 @@ public class PropertyForm {
 		this.detail1 = detail1;
 	}
 
-	
+	public LocalDateTime getCreated() {
+		return created;
+	}
+
+	public void setCreated(LocalDateTime created) {
+		this.created = created;
+	}
+
 }
