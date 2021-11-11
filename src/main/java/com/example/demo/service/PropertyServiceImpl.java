@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,11 @@ public class PropertyServiceImpl implements PropertyService {
 	@Override
 	public void save(Property property) {
 		dao.insertProperty(property);
+	}
+	
+	@Override
+	public List<Property> getAll() {
+		return dao.getAll();
 	}
 
 }

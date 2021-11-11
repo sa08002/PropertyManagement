@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${title}">Insert title here</title>
+</head>
+<body>
+<h1 th:text="${title}">仮のタイトル</h1>
+<table>
+	<tr>
+		<th>id</th><th>物件名</th><th>住所</th><th>電話番号</th><th>メールアドレス</th><th>詳細1</th>
+	</tr>
+	<tr th:each="property : ${propertyList}">
+		<td th:text="${property.id}"></td>
+		<td th:text="${property.propertyName}"></td>
+		<td th:text="${property.address}"></td>
+		<td th:text="${property.tel1}"></td>
+		<td th:text="${property.email}"></td>
+		<td th:text="${property.detail1}"></td>
+		<td>
+			<form method="get" action="#" th:action="@{/property/form}">
+				<input type="submit" value="詳細">
+			</form>
+		</td>
+		<td>
+			<form method="get" action="#" th:action="@{/property/form}">
+				<input type="submit" value="削除">
+			</form>
+		</td>
+	</tr>
+</table>
+<form method="get" action="#" th:action="@{/property/form}">
+	<input type="submit" value="物件投稿">
+</form>
+</body>
+</html>

@@ -1,14 +1,15 @@
 package com.example.demo.dao;
 
+import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.entity.Property;
-
-
 
 
 @Repository
@@ -36,8 +37,21 @@ public class PropertyDaoImpl implements PropertyDao {
 
 	@Override
 	public List<Property> getAll() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+		String sql = "SELECT id, property_name, address, tel1, email, detail1, created FROM property";
+		List<Map<String, Object>> resultList = jdbcTemplate.queryForList(sql);
+		List<Property> list = new ArrayList<Property>();
+		for(Map<String, Object> result : resultList) {
+			Property property = new Property();
+			property.setId((int)result.get("id"));
+			property.setPropertyName((String)result.get("property_name"));
+			property.setAddress((String)result.get("address"));
+			property.setTel1((String)result.get("tel1"));
+			property.setEmail((String)result.get("email"));
+			property.setDetail1((String)result.get("detail1"));			
+			property.setCreated(((Timestamp)result.get("created")).toLocalDateTime());
+			list.add(property);
+		}
+		return list;
 	}
 
 }
