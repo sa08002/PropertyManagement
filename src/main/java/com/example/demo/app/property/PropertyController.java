@@ -1,6 +1,7 @@
 package com.example.demo.app.property;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,16 +27,26 @@ public class PropertyController {
  	public PropertyController(PropertyService propertyService){
  		this.propertyService = propertyService;
  	}
+ 	
+	@GetMapping("/index")
+	public String index(Model model) {
+		List<Property> list = propertyService.getAll();
+		
+		model.addAttribute("propertyList", list);
+		model.addAttribute("title", "物件一覧");
+		
+		return "property/index";
+	}
 	
 	@GetMapping("/form")
 	public String form(PropertyForm propertyForm, Model model) {
-		model.addAttribute("title", "Property Form");
+		model.addAttribute("title", "投稿フォーム");
 		return "property/form";
 	}
 	
 	@PostMapping("/form")
 	public String formGoBack(PropertyForm propertyForm, Model model) {
-		model.addAttribute("title", "Inquiry Form");
+		model.addAttribute("title", "投稿フォーム");
 		return "property/form"; 
 	}
 	
@@ -44,10 +55,10 @@ public class PropertyController {
 			BindingResult result,
 			Model model) {
 		if(result.hasErrors()) {
-			model.addAttribute("title", "Property Form");
+			model.addAttribute("title", "投稿フォーム");
 			return "property/form";
 		}
-		model.addAttribute("title", "Confirm Page");
+		model.addAttribute("title", "確認ページ");
 		return "property/confirm";
 	}
 	
@@ -57,7 +68,7 @@ public class PropertyController {
 			Model model,
 			RedirectAttributes redirectAttributes) {
 		if(result.hasErrors()) {
-			model.addAttribute("title", "roperty Form");
+			model.addAttribute("title", "投稿フォーム");
 			return "property/form";
 		}
 		
@@ -68,7 +79,7 @@ public class PropertyController {
 		property.setEmail(propertyForm.getEmail());
 		property.setDetail1(propertyForm.getDetail1());
 		property.setCreated(LocalDateTime.now());
-		redirectAttributes.addFlashAttribute("complete", "Registered!");
+		redirectAttributes.addFlashAttribute("complete", "登録しました！");
 		
 		propertyService.save(property);
 

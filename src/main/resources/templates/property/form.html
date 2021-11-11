@@ -30,7 +30,10 @@
 	<textarea name="detail1" id="detail1" rows="3" cols="40" th:field="*{detail1}"></textarea><br>
 	
 	<input type="submit" value="確認ページへ">
-	
+</form>
+
+<form method="get" action="#" th:action="@{/property/index}">
+	<input type="submit" value="物件一覧">
 </form>
 </body>
 </html>
