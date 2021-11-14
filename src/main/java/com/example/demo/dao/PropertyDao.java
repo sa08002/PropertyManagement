@@ -8,6 +8,8 @@ public interface PropertyDao {
 	
 	void insertProperty(Property property);
 	
+	Property comfirmProperty(int id);
+	
 	int updateProperty(Property property);
 	
 	List<Property> getAll();

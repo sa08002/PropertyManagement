@@ -6,9 +6,11 @@ import com.example.demo.entity.Property;
 
 public interface PropertyService {
 	
-	void save(Property property);
+	void save (Property property);
 
 //	void update(Property property);
+	
+	Property comfirm (int id);
 	
 	List<Property> getAll();
 

@@ -23,7 +23,7 @@
 			</form>
 		</td>
 		<td>
-			<form method="get" action="#" th:action="@{/property/form}">
+			<form method="get" action="#" th:action="@{/property/delete/{id}(id=${property.id})}" >
 				<input type="submit" value="削除">
 			</form>
 		</td>
