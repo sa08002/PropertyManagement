@@ -29,6 +29,7 @@ public class PropertyController {
  		this.propertyService = propertyService;
  	}
  	
+// 	一覧表示
 	@GetMapping("/index")
 	public String index(Model model) {
 		List<Property> list = propertyService.getAll();
@@ -39,18 +40,21 @@ public class PropertyController {
 		return "property/index";
 	}
 	
+//	投稿フォーム
 	@GetMapping("/form")
 	public String form(PropertyForm propertyForm, Model model) {
 		model.addAttribute("title", "投稿フォーム");
 		return "property/form";
 	}
 	
+//	投稿フォームから戻る処理
 	@PostMapping("/form")
 	public String formGoBack(PropertyForm propertyForm, Model model) {
 		model.addAttribute("title", "投稿フォーム");
 		return "property/form"; 
 	}
 	
+//	投稿確認
 	@PostMapping("/confirm")
 	public String confirm(@Validated PropertyForm propertyForm,
 			BindingResult result,
@@ -63,6 +67,7 @@ public class PropertyController {
 		return "property/confirm";
 	}
 	
+//	投稿処理
 	@PostMapping("/complete")
 	public String complete(@Validated PropertyForm propertyForm,
 			BindingResult result,
@@ -87,6 +92,7 @@ public class PropertyController {
 		return "redirect:/property/form";
 	}
 	
+//	削除確認
 	@GetMapping("/delete/{id}")
 	public String comfirmDelete(@PathVariable("id") int id, Model model) {
 		
@@ -95,6 +101,14 @@ public class PropertyController {
 		model.addAttribute("oneProperty", property);
 		model.addAttribute("title", "削除しますか？");
 		return "property/comfirmDelete";
+	}
+	
+//	削除処理
+	@PostMapping("/delete/{id}")
+	public String delete(@PathVariable("id") int id, Model model) {
+		propertyService.delete(id);
+		model.addAttribute("title", "削除が完了しました");
+		return "property/completionDelete";
 	}
 
 }

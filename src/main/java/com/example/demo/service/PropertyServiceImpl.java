@@ -35,5 +35,10 @@ public class PropertyServiceImpl implements PropertyService {
 		return dao.getAll();
 	}
 
+	@Override
+	public void delete(int id) {
+		dao.delete(id);
+	}
+
 
 }

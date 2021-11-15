@@ -13,6 +13,8 @@ public interface PropertyDao {
 	int updateProperty(Property property);
 	
 	List<Property> getAll();
+	
+	void delete(int id);
 
 
 }

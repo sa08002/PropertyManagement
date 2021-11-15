@@ -23,12 +23,12 @@
 <table>
 	<tr>
 		<td>
-			<form method="get" action="#" th:action="@{/property/form}">
+			<form method="post" action="#" th:action="@{/property/delete/{id}(id=${id})}">
 				<input type="submit" value="削除する">
 			</form>
 		</td>
 		<td>
-			<form method="get" action="#" th:action="@{/property/form}">
+			<form method="get" action="#" th:action="@{/property/index}">
 				<input type="submit" value="一覧に戻る">
 			</form>
 		</td>

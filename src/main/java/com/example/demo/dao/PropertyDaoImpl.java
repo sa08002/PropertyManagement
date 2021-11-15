@@ -70,4 +70,10 @@ public class PropertyDaoImpl implements PropertyDao {
 		return property;
 	}
 
+	@Override
+	public void delete(int id) {
+	    String sql = "DELETE FROM property WHERE id = ?";
+	    jdbcTemplate.update(sql, id);
+	}
+
 }
