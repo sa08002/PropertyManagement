@@ -10,6 +10,10 @@ public interface PropertyService {
 
 //	void update(Property property);
 	
+	Property comfirm(int id);
+	
+	void delete(int id);
+	
 	List<Property> getAll();
 
 }

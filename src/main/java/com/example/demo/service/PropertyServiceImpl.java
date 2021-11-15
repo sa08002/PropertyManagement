@@ -23,8 +23,22 @@ public class PropertyServiceImpl implements PropertyService {
 	}
 	
 	@Override
+	public Property comfirm(int id) {
+		
+		Property property = new Property();
+		property = dao.comfirmProperty(id);
+		return property;
+	}
+	
+	@Override
 	public List<Property> getAll() {
 		return dao.getAll();
 	}
+
+	@Override
+	public void delete(int id) {
+		dao.delete(id);
+	}
+
 
 }

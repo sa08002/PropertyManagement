@@ -54,4 +54,26 @@ public class PropertyDaoImpl implements PropertyDao {
 		return list;
 	}
 
+	@Override
+	public Property comfirmProperty(int id) {
+		String sql = "SELECT id, property_name, address, tel1, email, detail1, created FROM property WHERE id = ?";		
+		Map<String, Object> oneProperty = jdbcTemplate.queryForMap(sql, id);
+		Property property = new Property();
+		property.setId((int)oneProperty.get("id"));
+		property.setPropertyName((String)oneProperty.get("property_name"));
+		property.setAddress((String)oneProperty.get("address"));
+		property.setTel1((String)oneProperty.get("tel1"));
+		property.setEmail((String)oneProperty.get("email"));
+		property.setDetail1((String)oneProperty.get("detail1"));
+		property.setCreated(((Timestamp)oneProperty.get("created")).toLocalDateTime());
+
+		return property;
+	}
+
+	@Override
+	public void delete(int id) {
+	    String sql = "DELETE FROM property WHERE id = ?";
+	    jdbcTemplate.update(sql, id);
+	}
+
 }
