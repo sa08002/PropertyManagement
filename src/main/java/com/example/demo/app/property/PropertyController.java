@@ -92,10 +92,20 @@ public class PropertyController {
 		return "redirect:/property/form";
 	}
 	
+//	詳細画面
+	@GetMapping("/detail/{id}")
+	public String detail(@PathVariable("id") int id, Model model) {
+		Property property = new Property();
+		property = propertyService.comfirm(id);
+		model.addAttribute("oneProperty", property);
+		model.addAttribute("title", "物件詳細");
+		return "property/detail";
+	}
+	
+	
 //	削除確認
 	@GetMapping("/delete/{id}")
 	public String comfirmDelete(@PathVariable("id") int id, Model model) {
-		
 		Property property = new Property();
 		property = propertyService.comfirm(id);
 		model.addAttribute("oneProperty", property);
