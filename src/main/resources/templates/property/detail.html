@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<title th:text="${title}">Insert title here</title>
+</head>
+<body>
+<h1 th:text="${title}">仮のタイトル</h1>
+
+<div th:object="${oneProperty}">
+<h3>物件名</h3>
+<p th:text="*{propertyName}"></p>
+<h3>住所</h3>
+<p th:text="*{address}"></p>
+<h3>電話番号</h3>
+<p th:text="*{tel1}"></p>
+<h3>メールアドレス</h3>
+<p th:text="*{email}"></p>
+<h3>詳細1</h3>
+<p th:text="*{detail1}"></p>
+
+<table>
+	<tr>
+		<td>
+			<form method="get" action="#" th:action="@{/property/delete/{id}(id=${id})}">
+				<input type="submit" value="編集する">
+			</form>
+		</td>
+		<td>
+			<form method="get" action="#" th:action="@{/property/index}">
+				<input type="submit" value="一覧に戻る">
+			</form>
+		</td>
+	</tr>
+</table>
+
+</div>
+</body>
+</html>
