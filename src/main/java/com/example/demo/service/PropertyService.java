@@ -6,14 +6,20 @@ import com.example.demo.entity.Property;
 
 public interface PropertyService {
 	
+//	登録処理
 	void save(Property property);
-
-//	void update(Property property);
 	
+//	一覧取得
+	List<Property> getAll();
+	
+//	確認
 	Property comfirm(int id);
+
+//	編集処理
+	void update(Property property);
 	
+//	削除処理
 	void delete(int id);
 	
-	List<Property> getAll();
 
 }

@@ -54,11 +54,12 @@ public class PropertyController {
 		return "property/form"; 
 	}
 	
-//	投稿確認
+//	投稿
 	@PostMapping("/confirm")
 	public String confirm(@Validated PropertyForm propertyForm,
 			BindingResult result,
 			Model model) {
+		
 		if(result.hasErrors()) {
 			model.addAttribute("title", "投稿フォーム");
 			return "property/form";
@@ -73,22 +74,31 @@ public class PropertyController {
 			BindingResult result,
 			Model model,
 			RedirectAttributes redirectAttributes) {
+		
+
 		if(result.hasErrors()) {
 			model.addAttribute("title", "投稿フォーム");
 			return "property/form";
 		}
 		
 		Property property = new Property();
+		property.setId(propertyForm.getId());
 		property.setPropertyName(propertyForm.getPropertyName());
 		property.setAddress(propertyForm.getAddress());
 		property.setTel1(propertyForm.getTel1());
 		property.setEmail(propertyForm.getEmail());
 		property.setDetail1(propertyForm.getDetail1());
-		property.setCreated(LocalDateTime.now());
-		redirectAttributes.addFlashAttribute("complete", "登録しました！");
 		
-		propertyService.save(property);
-
+		switch(property.getId()) {
+		case 0:
+			property.setCreated(LocalDateTime.now());
+			redirectAttributes.addFlashAttribute("complete", "登録しました！");
+			propertyService.save(property);	
+			break;
+		default:
+			redirectAttributes.addFlashAttribute("complete", "変更しました！");
+			propertyService.update(property);
+		}
 		return "redirect:/property/form";
 	}
 	
@@ -102,6 +112,21 @@ public class PropertyController {
 		return "property/detail";
 	}
 	
+//	編集処理
+	@PostMapping("/edit/{id}")
+	public String edit(@PathVariable("id") int id, PropertyForm propertyForm, Model model) {
+		Property property = new Property();
+		property = propertyService.comfirm(id);
+		propertyForm.setId(id);
+		propertyForm.setPropertyName(property.getPropertyName());
+		propertyForm.setAddress(property.getAddress());
+		propertyForm.setTel1(property.getTel1());
+		propertyForm.setEmail(property.getEmail());
+		propertyForm.setDetail1(property.getDetail1());
+
+		model.addAttribute("title", "投稿フォーム");
+		return "property/form"; 
+	}
 	
 //	削除確認
 	@GetMapping("/delete/{id}")
