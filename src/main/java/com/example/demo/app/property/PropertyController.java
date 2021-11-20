@@ -22,23 +22,11 @@ import com.example.demo.service.PropertyService;
 public class PropertyController {
 	
 	private final PropertyService propertyService;
-
 	
  	@Autowired
  	public PropertyController(PropertyService propertyService){
  		this.propertyService = propertyService;
  	}
- 	
-// 	一覧表示
-	@GetMapping("/index")
-	public String index(Model model) {
-		List<Property> list = propertyService.getAll();
-		
-		model.addAttribute("propertyList", list);
-		model.addAttribute("title", "物件一覧");
-		
-		return "property/index";
-	}
 	
 //	投稿フォーム
 	@GetMapping("/form")
@@ -75,7 +63,6 @@ public class PropertyController {
 			Model model,
 			RedirectAttributes redirectAttributes) {
 		
-
 		if(result.hasErrors()) {
 			model.addAttribute("title", "投稿フォーム");
 			return "property/form";
@@ -100,6 +87,18 @@ public class PropertyController {
 			propertyService.update(property);
 		}
 		return "redirect:/property/form";
+	}
+	
+// 	一覧表示
+	@GetMapping("/index")
+	public String index(Model model) {
+		List<Property> list = propertyService.getAll();
+		
+		model.addAttribute("propertyList", list);
+		model.addAttribute("title", "物件一覧");
+		
+//		return "property/index";
+		return "property/index_boot";
 	}
 	
 //	詳細画面
