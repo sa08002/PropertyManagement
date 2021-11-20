@@ -22,6 +22,7 @@ public class PropertyDaoImpl implements PropertyDao {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 	
+//	登録処理
 	@Override
 	public void insertProperty(Property property) {
 		jdbcTemplate.update("INSERT INTO property(property_name, address, tel1, email, detail1, created)"
@@ -29,12 +30,7 @@ public class PropertyDaoImpl implements PropertyDao {
 				property.getPropertyName(), property.getAddress(), property.getTel1(), property.getEmail(), property.getDetail1(), property.getCreated());
 	}
 
-	@Override
-	public int updateProperty(Property property) {
-		// TODO 自動生成されたメソッド・スタブ
-		return 0;
-	}
-
+//	一覧取得
 	@Override
 	public List<Property> getAll() {
 		String sql = "SELECT id, property_name, address, tel1, email, detail1, created FROM property";
@@ -54,6 +50,7 @@ public class PropertyDaoImpl implements PropertyDao {
 		return list;
 	}
 
+//	確認
 	@Override
 	public Property comfirmProperty(int id) {
 		String sql = "SELECT id, property_name, address, tel1, email, detail1, created FROM property WHERE id = ?";		
@@ -70,6 +67,13 @@ public class PropertyDaoImpl implements PropertyDao {
 		return property;
 	}
 
+//	編集処理
+	@Override
+	public void updateProperty(Property property) {
+		jdbcTemplate.update("UPDATE property SET property_name = ?, address = ?, tel1 = ?, email = ?, detail1 = ? WHERE id = ?",
+				property.getPropertyName(), property.getAddress(), property.getTel1(), property.getEmail(), property.getDetail1(), property.getId());
+	}
+//	削除処理
 	@Override
 	public void delete(int id) {
 	    String sql = "DELETE FROM property WHERE id = ?";

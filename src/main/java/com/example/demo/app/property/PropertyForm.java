@@ -5,6 +5,7 @@ import javax.validation.constraints.NotNull;
 
 public class PropertyForm {
 	
+	private int id;
 	@NotNull
 	private String propertyName;
 	@NotNull
@@ -18,6 +19,14 @@ public class PropertyForm {
 	public PropertyForm() {
 	}
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	public String getPropertyName() {
 		return propertyName;
 	}

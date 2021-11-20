@@ -22,6 +22,7 @@
 <p th:text="*{detail1}"></p>
 
 <form method="post" action="#" th:action="@{/property/complete}">
+	<input type="hidden" name="id" th:value="*{id}">
 	<input type="hidden" name="propertyName" th:value="*{propertyName}">
 	<input type="hidden" name="address" th:value="*{address}">
 	<input type="hidden" name="tel1" th:value="*{tel1}">
@@ -31,6 +32,7 @@
 </form>
 
 <form method="post" action="#" th:action="@{/property/form}">
+	<input type="hidden" name="id" th:value="*{id}">
 	<input type="hidden" name="propertyName" th:value="*{propertyName}">
 	<input type="hidden" name="address" th:value="*{address}">
 	<input type="hidden" name="tel1" th:value="*{tel1}">

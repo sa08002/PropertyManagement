@@ -17,28 +17,36 @@ public class PropertyServiceImpl implements PropertyService {
 		this.dao = dao;
 	}
 
+//	登録処理
 	@Override
 	public void save(Property property) {
 		dao.insertProperty(property);
 	}
 	
+//	一覧取得
+	@Override
+	public List<Property> getAll() {
+		return dao.getAll();
+	}
+	
+//	確認
 	@Override
 	public Property comfirm(int id) {
-		
 		Property property = new Property();
 		property = dao.comfirmProperty(id);
 		return property;
 	}
 	
+//	編集処理
 	@Override
-	public List<Property> getAll() {
-		return dao.getAll();
+	public void update(Property property) {
+		dao.updateProperty(property);
 	}
 
+//	削除処理
 	@Override
 	public void delete(int id) {
 		dao.delete(id);
 	}
-
 
 }
