@@ -69,6 +69,8 @@
 		<form method="post" action="#" th:action="@{/property/confirm}"
 			th:object="${propertyForm}">
 
+			<input type=hidden id="id" name="id" th:value="*{id}">
+
 			<div class="form-group">
 				<label for="propertyName">物件名</label> <input type="text"
 					name="propertyName" class="form-control" id="propertyName"
@@ -108,6 +110,10 @@
 			</div>
 
 			<button type="submit" class="btn btn-dark">投稿する</button>
+		</form>
+
+		<form method="get" action="#" th:action="@{/property/index}">
+			<button type="submit" class="btn btn-dark mt-4">物件一覧</button>
 		</form>
 
 	</main>

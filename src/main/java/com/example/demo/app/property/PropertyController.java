@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.entity.Property;
 import com.example.demo.service.PropertyService;
@@ -39,7 +38,7 @@ public class PropertyController {
 	@PostMapping("/form")
 	public String formGoBack(PropertyForm propertyForm, Model model) {
 		model.addAttribute("title", "投稿フォーム");
-		return "property/form"; 
+		return "property/form_boot"; 
 	}
 	
 //	投稿
@@ -53,19 +52,18 @@ public class PropertyController {
 			return "property/form_boot";
 		}
 		model.addAttribute("title", "確認ページ");
-		return "property/confirm";
+		return "property/confirm_boot";
 	}
 	
 //	投稿処理
 	@PostMapping("/complete")
 	public String complete(@Validated PropertyForm propertyForm,
 			BindingResult result,
-			Model model,
-			RedirectAttributes redirectAttributes) {
+			Model model) {
 		
 		if(result.hasErrors()) {
 			model.addAttribute("title", "投稿フォーム");
-			return "property/form";
+			return "property/form_boot";
 		}
 		
 		Property property = new Property();
@@ -79,14 +77,14 @@ public class PropertyController {
 		switch(property.getId()) {
 		case 0:
 			property.setCreated(LocalDateTime.now());
-			redirectAttributes.addFlashAttribute("complete", "登録しました！");
+			model.addAttribute("title", "登録しました！");
 			propertyService.save(property);	
 			break;
 		default:
-			redirectAttributes.addFlashAttribute("complete", "変更しました！");
+			model.addAttribute("title", "変更しました！");
 			propertyService.update(property);
 		}
-		return "redirect:/property/form";
+		return "/property/completion";
 	}
 	
 // 	一覧表示
@@ -104,17 +102,17 @@ public class PropertyController {
 	@GetMapping("/detail/{id}")
 	public String detail(@PathVariable("id") int id, Model model) {
 		Property property = new Property();
-		property = propertyService.comfirm(id);
+		property = propertyService.confirm(id);
 		model.addAttribute("oneProperty", property);
 		model.addAttribute("title", "物件詳細");
-		return "property/detail";
+		return "property/detail_boot";
 	}
 	
 //	編集処理
 	@PostMapping("/edit/{id}")
 	public String edit(@PathVariable("id") int id, PropertyForm propertyForm, Model model) {
 		Property property = new Property();
-		property = propertyService.comfirm(id);
+		property = propertyService.confirm(id);
 		propertyForm.setId(id);
 		propertyForm.setPropertyName(property.getPropertyName());
 		propertyForm.setAddress(property.getAddress());
@@ -128,20 +126,20 @@ public class PropertyController {
 	
 //	削除確認
 	@GetMapping("/delete/{id}")
-	public String comfirmDelete(@PathVariable("id") int id, Model model) {
+	public String confirmDelete(@PathVariable("id") int id, Model model) {
 		Property property = new Property();
-		property = propertyService.comfirm(id);
+		property = propertyService.confirm(id);
 		model.addAttribute("oneProperty", property);
 		model.addAttribute("title", "削除しますか？");
-		return "property/comfirmDelete";
+		return "property/confirmDetail_boot";
 	}
 	
-//	削除処理
+//	削除完了
 	@PostMapping("/delete/{id}")
 	public String delete(@PathVariable("id") int id, Model model) {
 		propertyService.delete(id);
 		model.addAttribute("title", "削除が完了しました");
-		return "property/completionDelete";
+		return "property/completion";
 	}
 
 }

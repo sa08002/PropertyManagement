@@ -31,9 +31,9 @@ public class PropertyServiceImpl implements PropertyService {
 	
 //	確認
 	@Override
-	public Property comfirm(int id) {
+	public Property confirm(int id) {
 		Property property = new Property();
-		property = dao.comfirmProperty(id);
+		property = dao.confirmProperty(id);
 		return property;
 	}
 	
