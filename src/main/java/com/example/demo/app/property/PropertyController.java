@@ -138,7 +138,7 @@ public class PropertyController {
 	@PostMapping("/delete/{id}")
 	public String delete(@PathVariable("id") int id, Model model) {
 		propertyService.delete(id);
-		model.addAttribute("title", "削除が完了しました");
+		model.addAttribute("title", "削除しました");
 		return "property/completion";
 	}
 
