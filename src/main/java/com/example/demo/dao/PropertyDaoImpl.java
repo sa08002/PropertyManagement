@@ -52,7 +52,7 @@ public class PropertyDaoImpl implements PropertyDao {
 
 //	確認
 	@Override
-	public Property comfirmProperty(int id) {
+	public Property confirmProperty(int id) {
 		String sql = "SELECT id, property_name, address, tel1, email, detail1, created FROM property WHERE id = ?";		
 		Map<String, Object> oneProperty = jdbcTemplate.queryForMap(sql, id);
 		Property property = new Property();

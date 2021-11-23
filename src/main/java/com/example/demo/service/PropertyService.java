@@ -13,7 +13,7 @@ public interface PropertyService {
 	List<Property> getAll();
 	
 //	確認
-	Property comfirm(int id);
+	Property confirm(int id);
 
 //	編集処理
 	void update(Property property);

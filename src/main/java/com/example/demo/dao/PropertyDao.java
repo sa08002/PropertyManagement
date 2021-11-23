@@ -13,7 +13,7 @@ public interface PropertyDao {
 	List<Property> getAll();
 	
 //	確認
-	Property comfirmProperty(int id);
+	Property confirmProperty(int id);
 	
 //	編集処理
 	void updateProperty(Property property);
