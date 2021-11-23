@@ -32,7 +32,7 @@ public class PropertyController {
 	@GetMapping("/form")
 	public String form(PropertyForm propertyForm, Model model) {
 		model.addAttribute("title", "投稿フォーム");
-		return "property/form";
+		return "property/form_boot";
 	}
 	
 //	投稿フォームから戻る処理
@@ -50,7 +50,7 @@ public class PropertyController {
 		
 		if(result.hasErrors()) {
 			model.addAttribute("title", "投稿フォーム");
-			return "property/form";
+			return "property/form_boot";
 		}
 		model.addAttribute("title", "確認ページ");
 		return "property/confirm";
@@ -124,7 +124,7 @@ public class PropertyController {
 		propertyForm.setDetail1(property.getDetail1());
 
 		model.addAttribute("title", "投稿フォーム");
-		return "property/form"; 
+		return "property/form_boot"; 
 	}
 	
 //	削除確認
