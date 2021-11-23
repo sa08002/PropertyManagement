@@ -97,7 +97,6 @@ public class PropertyController {
 		model.addAttribute("propertyList", list);
 		model.addAttribute("title", "物件一覧");
 		
-//		return "property/index";
 		return "property/index_boot";
 	}
 	
