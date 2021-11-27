@@ -9,21 +9,19 @@ public class Property {
 	private String address;
 	private String tel1;
 	private String email;
-	private String detail1;
 	private LocalDateTime created;
 	
 	public Property() {}
 	
 	public Property(int id, String propertyName,  String address, 
 			String tel1, String email, 
-			String detail1, LocalDateTime created) {
+			LocalDateTime created) {
 		super();
 		this.id = id;
 		this.propertyName = propertyName;
 		this.address = address;
 		this.tel1 = tel1;
 		this.email = email;
-		this.detail1 = detail1;
 		this.created = created;
 	}
 
@@ -67,13 +65,6 @@ public class Property {
 		this.email = email;
 	}
 
-	public String getDetail1() {
-		return detail1;
-	}
-
-	public void setDetail1(String detail1) {
-		this.detail1 = detail1;
-	}
 
 	public LocalDateTime getCreated() {
 		return created;

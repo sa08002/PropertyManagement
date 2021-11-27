@@ -37,9 +37,6 @@
 <h5>電話番号</h5>
 <p th:text="*{tel1}" class="list-group-item mb-4">電話番号</p>
 <h5>メールアドレス</h5>
-<p th:text="*{email}" class="list-group-item mb-4">メールアドレス</p>
-<h5>詳細</h5>
-<p th:text="*{detail1}"class="list-group-item mb-4">詳細</p>
 
 </div>
 	
@@ -49,7 +46,6 @@
 	<input type="hidden" name="address" th:value="*{address}">
 	<input type="hidden" name="tel1" th:value="*{tel1}">
 	<input type="hidden" name="email" th:value="*{email}">
-	<input type="hidden" name="detail1" th:value="*{detail1}">
 	<button type="submit" class="btn btn-dark">登録</button>
 </form>
 
@@ -59,7 +55,6 @@
 	<input type="hidden" name="address" th:value="*{address}">
 	<input type="hidden" name="tel1" th:value="*{tel1}">
 	<input type="hidden" name="email" th:value="*{email}">
-	<input type="hidden" name="detail1" th:value="*{detail1}">
 	<button type="submit" class="btn btn-dark">戻る</button>
 </form>
 </div>

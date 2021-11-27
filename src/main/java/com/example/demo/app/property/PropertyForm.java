@@ -14,7 +14,6 @@ public class PropertyForm {
 	private String tel1;
 	@Email(message = "Invalid E-mail Format")
 	private String email;
-	private String detail1;
 	
 	public PropertyForm() {
 	}
@@ -58,14 +57,5 @@ public class PropertyForm {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	public String getDetail1() {
-		return detail1;
-	}
-
-	public void setDetail1(String detail1) {
-		this.detail1 = detail1;
-	}
-
 	
 }

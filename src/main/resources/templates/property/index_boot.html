@@ -79,7 +79,6 @@
       <td th:text="${property.address}">address</td>
       <td th:text="${property.tel1}">tel1</td>
       <td th:text="${property.email}">email</td>
-      <td th:text="${property.detail1}">detail1</td>
       <td>
 			<form method="get" action="#" th:action="@{/property/detail/{id}(id=${property.id})}">
 				<input type="submit" value="詳細">
