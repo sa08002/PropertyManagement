@@ -19,5 +19,5 @@ CREATE TABLE detail
 	detail5 VARCHAR(500),
 	CONSTRAINT detail_id 
 		FOREIGN KEY (property_id)
-		REFERENCES property (id)
+		REFERENCES property (id) on delete cascade
 );
