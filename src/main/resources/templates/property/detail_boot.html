@@ -38,6 +38,19 @@
 <h5>メールアドレス</h5>
 <p th:text="*{email}" class="list-group-item mb-4">メールアドレス</p>
 
+<div th:object="${oneDetail}">
+<h5>詳細1</h5>
+<p th:text="*{detail1}" class="list-group-item mb-4">詳細1</p>
+<h5>詳細2</h5>
+<p th:text="*{detail2}" class="list-group-item mb-4">詳細1</p>
+<h5>詳細3</h5>
+<p th:text="*{detail3}" class="list-group-item mb-4">詳細1</p>
+<h5>詳細4</h5>
+<p th:text="*{detail4}" class="list-group-item mb-4">詳細1</p>
+<h5>詳細5</h5>
+<p th:text="*{detail5}" class="list-group-item mb-4">詳細1</p>
+</div>
+
 </div>
 
 <form method="post" action="#" th:action="@{/property/edit/{id}(id=${id})}">
