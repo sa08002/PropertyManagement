@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.entity.Detail;
 import com.example.demo.entity.Property;
+import com.example.demo.service.DetailService;
 import com.example.demo.service.PropertyService;
 
 @Controller
@@ -22,11 +23,15 @@ import com.example.demo.service.PropertyService;
 public class PropertyController {
 	
 	private final PropertyService propertyService;
+	private final DetailService detailService;
+
 	
  	@Autowired
- 	public PropertyController(PropertyService propertyService){
+ 	public PropertyController(PropertyService propertyService, DetailService detailService){
  		this.propertyService = propertyService;
+ 		this.detailService =detailService;
  	}
+ 	
 	
 //	投稿フォーム
 	@GetMapping("/form")
@@ -104,8 +109,9 @@ public class PropertyController {
 		Property property = new Property();
 		property = propertyService.confirm(id);
 		Detail detail = new Detail();
-		
+		detail = detailService.confirm(id);
 		model.addAttribute("oneProperty", property);
+		model.addAttribute("oneDetail", detail);
 		model.addAttribute("title", "物件詳細");
 		return "property/detail_boot";
 	}
