@@ -5,7 +5,19 @@ CREATE TABLE property
 	address VARCHAR(100) NOT NULL,
 	tel1 VARCHAR(16) NOT NULL,
 	email VARCHAR(100),
-	detail1 VARCHAR(500),
 	created DATETIME NOT NULL,
 	PRIMARY KEY(id)
+);
+
+CREATE TABLE detail
+(
+	property_id int(10),
+	detail1 VARCHAR(500),
+	detail2 VARCHAR(500),
+	detail3 VARCHAR(500),
+	detail4 VARCHAR(500),
+	detail5 VARCHAR(500),
+	CONSTRAINT detail_id 
+		FOREIGN KEY (property_id)
+		REFERENCES property (id) on delete cascade
 );

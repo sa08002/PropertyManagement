@@ -72,7 +72,6 @@ public class PropertyController {
 		property.setAddress(propertyForm.getAddress());
 		property.setTel1(propertyForm.getTel1());
 		property.setEmail(propertyForm.getEmail());
-		property.setDetail1(propertyForm.getDetail1());
 		
 		switch(property.getId()) {
 		case 0:
@@ -118,7 +117,6 @@ public class PropertyController {
 		propertyForm.setAddress(property.getAddress());
 		propertyForm.setTel1(property.getTel1());
 		propertyForm.setEmail(property.getEmail());
-		propertyForm.setDetail1(property.getDetail1());
 
 		model.addAttribute("title", "投稿フォーム");
 		return "property/form_boot"; 

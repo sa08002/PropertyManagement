@@ -26,9 +26,6 @@
 	<input id="email" name="email" type="text" th:value="*{email}"><br>
 	<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
 	
-	<label for="detail1">詳細1:</label>
-	<textarea name="detail1" id="detail1" rows="3" cols="40" th:field="*{detail1}"></textarea><br>
-	
 	<input type="submit" value="確認ページへ">
 </form>
 
