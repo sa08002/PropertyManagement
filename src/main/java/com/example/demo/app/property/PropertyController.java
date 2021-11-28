@@ -104,6 +104,7 @@ public class PropertyController {
 		Property property = new Property();
 		property = propertyService.confirm(id);
 		Detail detail = new Detail();
+		
 		model.addAttribute("oneProperty", property);
 		model.addAttribute("title", "物件詳細");
 		return "property/detail_boot";
