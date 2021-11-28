@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.demo.entity.Detail;
 import com.example.demo.entity.Property;
 import com.example.demo.service.PropertyService;
 
@@ -102,6 +103,7 @@ public class PropertyController {
 	public String detail(@PathVariable("id") int id, Model model) {
 		Property property = new Property();
 		property = propertyService.confirm(id);
+		Detail detail = new Detail();
 		model.addAttribute("oneProperty", property);
 		model.addAttribute("title", "物件詳細");
 		return "property/detail_boot";
