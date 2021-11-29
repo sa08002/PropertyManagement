@@ -73,11 +73,17 @@ public class PropertyController {
 		}
 		
 		Property property = new Property();
+		Detail detail = new Detail();
 		property.setId(propertyForm.getId());
 		property.setPropertyName(propertyForm.getPropertyName());
 		property.setAddress(propertyForm.getAddress());
 		property.setTel1(propertyForm.getTel1());
 		property.setEmail(propertyForm.getEmail());
+		detail.setDetail1(propertyForm.getDetail1());
+		detail.setDetail2(propertyForm.getDetail2());
+		detail.setDetail3(propertyForm.getDetail3());
+		detail.setDetail4(propertyForm.getDetail4());
+		detail.setDetail5(propertyForm.getDetail5());
 		
 		switch(property.getId()) {
 		case 0:
@@ -88,6 +94,7 @@ public class PropertyController {
 		default:
 			model.addAttribute("title", "変更しました！");
 			propertyService.update(property);
+			detailService.update(detail, property.getId());
 		}
 		return "/property/completion";
 	}
@@ -116,16 +123,23 @@ public class PropertyController {
 		return "property/detail_boot";
 	}
 	
-//	編集処理
+//	編集画面処理
 	@PostMapping("/edit/{id}")
 	public String edit(@PathVariable("id") int id, PropertyForm propertyForm, Model model) {
 		Property property = new Property();
 		property = propertyService.confirm(id);
+		Detail detail = new Detail();
+		detail = detailService.confirm(id);
 		propertyForm.setId(id);
 		propertyForm.setPropertyName(property.getPropertyName());
 		propertyForm.setAddress(property.getAddress());
 		propertyForm.setTel1(property.getTel1());
 		propertyForm.setEmail(property.getEmail());
+		propertyForm.setDetail1(detail.getDetail1());
+		propertyForm.setDetail2(detail.getDetail2());
+		propertyForm.setDetail3(detail.getDetail3());
+		propertyForm.setDetail4(detail.getDetail4());
+		propertyForm.setDetail5(detail.getDetail5());
 
 		model.addAttribute("title", "投稿フォーム");
 		return "property/form_boot"; 

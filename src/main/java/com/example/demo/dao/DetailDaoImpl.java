@@ -32,4 +32,11 @@ public class DetailDaoImpl implements DetailDao {
 		return detail;
 	}
 
+	@Override
+	public void updateDetail(Detail detail, int id) {
+		jdbcTemplate.update("UPDATE detail SET detail1 = ?, detail2 = ?, detail3 = ?, detail4 = ?,  detail5 = ? WHERE property_id = ?",
+				detail.getDetail1(), detail.getDetail2(), detail.getDetail3(), detail.getDetail4(), detail.getDetail5(), id);
+		
+	}
+
 }

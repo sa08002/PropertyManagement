@@ -68,7 +68,7 @@ public class PropertyDaoImpl implements PropertyDao {
 //	編集処理
 	@Override
 	public void updateProperty(Property property) {
-		jdbcTemplate.update("UPDATE property SET property_name = ?, address = ?, tel1 = ?, email = ?, WHERE id = ?",
+		jdbcTemplate.update("UPDATE property SET property_name = ?, address = ?, tel1 = ?, email = ? WHERE id = ?",
 				property.getPropertyName(), property.getAddress(), property.getTel1(), property.getEmail(), property.getId());
 	}
 //	削除処理

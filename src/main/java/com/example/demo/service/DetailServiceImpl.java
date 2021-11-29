@@ -22,4 +22,9 @@ public class DetailServiceImpl implements DetailService {
 		return detail;
 	}
 
+	@Override
+	public void update(Detail detail, int id) {
+		dao.updateDetail(detail, id);
+	}
+
 }
