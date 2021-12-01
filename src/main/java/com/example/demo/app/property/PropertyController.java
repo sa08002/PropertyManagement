@@ -89,7 +89,8 @@ public class PropertyController {
 		case 0:
 			property.setCreated(LocalDateTime.now());
 			model.addAttribute("title", "登録しました！");
-			propertyService.save(property);	
+			propertyService.save(property);
+			detailService.save(detail);
 			break;
 		default:
 			model.addAttribute("title", "変更しました！");

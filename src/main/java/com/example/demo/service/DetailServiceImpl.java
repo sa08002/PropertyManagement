@@ -15,6 +15,13 @@ public class DetailServiceImpl implements DetailService {
 		this.dao = dao;
 	}
 
+//	投稿
+	@Override
+	public void save(Detail detail) {	
+		dao.insertDetail(detail);
+	}
+	
+//	確認
 	@Override
 	public Detail confirm(int id) {
 		Detail detail = new Detail();
@@ -22,9 +29,11 @@ public class DetailServiceImpl implements DetailService {
 		return detail;
 	}
 
+//	編集
 	@Override
 	public void update(Detail detail, int id) {
 		dao.updateDetail(detail, id);
 	}
+
 
 }

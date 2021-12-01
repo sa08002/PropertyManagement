@@ -2,6 +2,7 @@ package com.example.demo.entity;
 
 public class Detail {
 	
+	private int property_id;
 	private String detail1;
 	private String detail2;
 	private String detail3;
@@ -10,13 +11,21 @@ public class Detail {
 	
 	public Detail() {}
 	
-	public Detail(String detail1, String detail2, String detail3, String detail4, String detail5) {
+	public Detail(int property_id, String detail1, String detail2, String detail3, String detail4, String detail5) {
 		this.detail1 = detail1;
 		this.detail1 = detail2;
 		this.detail1 = detail3;
 		this.detail1 = detail4;
 		this.detail1 = detail5;
 		
+	}
+	
+	public int getProperty_id() {
+		return property_id;
+	}
+
+	public void setProperty_id(int property_id) {
+		this.property_id = property_id;
 	}
 	
 	public String getDetail1() {

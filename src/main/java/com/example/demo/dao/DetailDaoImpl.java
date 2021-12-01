@@ -18,6 +18,15 @@ public class DetailDaoImpl implements DetailDao {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 
+//	投稿
+	@Override
+	public void insertDetail(Detail detail) {
+		jdbcTemplate.update("INSERT INTO detail(detail1, detail2, detail3, detail4, detail5)"
+				+ " VALUES(?, ?, ?, ?, ?)",
+				detail.getDetail1(), detail.getDetail2(), detail.getDetail3(), detail.getDetail4(), detail.getDetail5());
+	}
+
+//	確認
 	@Override
 	public Detail confirmDetail(int id) {
 		String sql = "SELECT detail1, detail2, detail3, detail4, detail5 FROM detail WHERE property_id = ?";		
@@ -32,11 +41,13 @@ public class DetailDaoImpl implements DetailDao {
 		return detail;
 	}
 
+//	編集
 	@Override
 	public void updateDetail(Detail detail, int id) {
 		jdbcTemplate.update("UPDATE detail SET detail1 = ?, detail2 = ?, detail3 = ?, detail4 = ?,  detail5 = ? WHERE property_id = ?",
 				detail.getDetail1(), detail.getDetail2(), detail.getDetail3(), detail.getDetail4(), detail.getDetail5(), id);
 		
 	}
+
 
 }
