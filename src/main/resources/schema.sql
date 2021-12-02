@@ -11,7 +11,7 @@ CREATE TABLE property
 
 CREATE TABLE detail
 (
-	property_id INT NOT NULL AUTO_INCREMENT,
+	property_id int NOT NULL AUTO_INCREMENT,
 	detail1 VARCHAR(500),
 	detail2 VARCHAR(500),
 	detail3 VARCHAR(500),
