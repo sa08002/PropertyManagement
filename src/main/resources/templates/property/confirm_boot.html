@@ -30,6 +30,8 @@
 <div th:object="${propertyForm}">
 <div class="mb-5 mt-5">
 
+<h5>物件No</h5>
+<p th:text="*{propertyId}" class="list-group-item mb-4">物件No</p>
 <h5>物件名</h5>
 <p th:text="*{propertyName}" class="list-group-item mb-4">物件名</p>
 <h5>住所</h5>
@@ -53,6 +55,7 @@
 	
 <form method="post" action="#" th:action="@{/property/complete}">
 	<input type="hidden" name="id" th:value="*{id}">
+	<input type="hidden" name="propertyId" th:value="*{propertyId}">
 	<input type="hidden" name="propertyName" th:value="*{propertyName}">
 	<input type="hidden" name="address" th:value="*{address}">
 	<input type="hidden" name="tel1" th:value="*{tel1}">
@@ -67,6 +70,7 @@
 
 <form method="post" action="#" th:action="@{/property/form}">
 	<input type="hidden" name="id" th:value="*{id}">
+	<input type="hidden" name="propertyId" th:value="*{propertyId}">
 	<input type="hidden" name="propertyName" th:value="*{propertyName}">
 	<input type="hidden" name="address" th:value="*{address}">
 	<input type="hidden" name="tel1" th:value="*{tel1}">

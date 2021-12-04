@@ -62,7 +62,7 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th scope="col">id</th>
+      <th scope="col">物件No</th>
       <th scope="col">物件名</th>
       <th scope="col">住所</th>
       <th scope="col">電話番号</th>
@@ -73,7 +73,7 @@
   </thead>
   <tbody>
     <tr th:each="property : ${propertyList}">
-      <th scope="row" th:text="${property.id}">1</th>
+      <th scope="row" th:text="${property.propertyId}">1</th>
       <td th:text="${property.propertyName}">propertyName</td>
       <td th:text="${property.address}">address</td>
       <td th:text="${property.tel1}">tel1</td>

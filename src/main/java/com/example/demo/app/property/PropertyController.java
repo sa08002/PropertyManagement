@@ -75,6 +75,7 @@ public class PropertyController {
 		Property property = new Property();
 		Detail detail = new Detail();
 		property.setId(propertyForm.getId());
+		property.setPropertyId(propertyForm.getPropertyId());
 		property.setPropertyName(propertyForm.getPropertyName());
 		property.setAddress(propertyForm.getAddress());
 		property.setTel1(propertyForm.getTel1());
@@ -132,6 +133,7 @@ public class PropertyController {
 		Detail detail = new Detail();
 		detail = detailService.confirm(id);
 		propertyForm.setId(id);
+		propertyForm.setPropertyId(property.getPropertyId());
 		propertyForm.setPropertyName(property.getPropertyName());
 		propertyForm.setAddress(property.getAddress());
 		propertyForm.setTel1(property.getTel1());

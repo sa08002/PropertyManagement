@@ -10,6 +10,9 @@
 <h2 th:text="${complete}"></h2>
 <form method="post" action="#" th:action="@{/property/confirm}" th:object="${propertyForm}">
 
+	<label for="propertyId">物件名:</label>
+	<input id="propertyId" name="propertyId" type="text" th:value="*{propertyId}"><br>
+
 	<label for="propertyName">物件名:</label>
 	<input id="propertyName" name="propertyName" type="text" th:value="*{propertyName}"><br>
 	<div th:if="${#fields.hasErrors('propertyName')}" th:errors="*{propertyName}"></div>
