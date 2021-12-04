@@ -1,7 +1,7 @@
 CREATE TABLE property
 (
 	id INT NOT NULL AUTO_INCREMENT,
-	property_id INT(8) NOT NULL,
+	property_id int(8)NOT NULL,
 	property_name VARCHAR(100) NOT NULL,
 	address VARCHAR(100) NOT NULL,
 	tel1 VARCHAR(16) NOT NULL,
