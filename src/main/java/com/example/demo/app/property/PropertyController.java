@@ -36,6 +36,13 @@ public class PropertyController {
 //	投稿フォーム
 	@GetMapping("/form")
 	public String form(PropertyForm propertyForm, Model model) {
+		
+//		新規登録時、物件Noの取得
+		if(propertyForm.getPropertyId() == 0) {
+			int propertyId = propertyService.generationId();
+			propertyForm.setPropertyId(propertyId);
+		}
+		
 		model.addAttribute("title", "投稿フォーム");
 		return "property/form_boot";
 	}

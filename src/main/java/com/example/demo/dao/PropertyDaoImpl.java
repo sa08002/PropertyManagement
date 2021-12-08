@@ -1,7 +1,9 @@
 package com.example.demo.dao;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -78,6 +80,33 @@ public class PropertyDaoImpl implements PropertyDao {
 	public void delete(int id) {
 	    String sql = "DELETE FROM property WHERE id = ?";
 	    jdbcTemplate.update(sql, id);
+	}
+
+//	今年の物件Noの取得
+	@Override
+	public int generationId() {
+		
+//		現在登録されている最新の物件Noの取得
+		String sql = "SELECT MAX(property_id) FROM property ";
+		Map<String, Object> map = jdbcTemplate.queryForMap(sql);
+		String propertyIdMax = String.valueOf((Integer)map.get("MAX(PROPERTY_ID)"));
+		String propertyYear = propertyIdMax.substring(0, 4);
+		
+//		現在の年を取得
+		Date date = new Date();
+		SimpleDateFormat getYearFormat = new SimpleDateFormat("yyyy");
+		String currentYear = getYearFormat.format(date);		
+		
+//		同年に物件がない場合、「西暦 + 0001」のIDを返却
+		if (!propertyYear.equals(currentYear)) {
+			String stringNewYearId = currentYear + "0001";
+			int intNewYearId = Integer.parseInt(stringNewYearId);
+			return intNewYearId;
+		}
+		
+//		同年に物件がある場合、「存在するID + 1」を返却
+		int intNextId = Integer.parseInt(propertyIdMax) + 1;
+		return intNextId;
 	}
 
 }

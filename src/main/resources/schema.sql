@@ -7,7 +7,8 @@ CREATE TABLE property
 	tel1 VARCHAR(16) NOT NULL,
 	email VARCHAR(100),
 	created DATETIME NOT NULL,
-	PRIMARY KEY(id)
+	PRIMARY KEY(id),
+	UNIQUE  KEY(property_id)
 );
 
 CREATE TABLE detail
