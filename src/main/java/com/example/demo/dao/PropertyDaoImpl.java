@@ -12,6 +12,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.entity.Property;
+import com.example.demo.service.PropertyIdDuplicateException;
 
 
 @Repository
@@ -26,10 +27,17 @@ public class PropertyDaoImpl implements PropertyDao {
 	
 //	登録処理
 	@Override
-	public void insertProperty(Property property) {
-		jdbcTemplate.update("INSERT INTO property(property_id, property_name, address, tel1, email, created)"
-				+ " VALUES(?, ?, ?, ?, ?, ?)",
-				property.getPropertyId(), property.getPropertyName(), property.getAddress(), property.getTel1(), property.getEmail(), property.getCreated());
+	public void insertProperty(Property property) throws PropertyIdDuplicateException {
+		
+		try {
+			jdbcTemplate.update("INSERT INTO property(property_id, property_name, address, tel1, email, created)"
+					+ " VALUES(?, ?, ?, ?, ?, ?)",
+					property.getPropertyId(), property.getPropertyName(), property.getAddress(), property.getTel1(), property.getEmail(), property.getCreated());
+			
+		}catch (Exception e) {
+			throw new PropertyIdDuplicateException("登録時エラーが発生しました。再度登録してください。");
+		}
+
 	}
 
 //	一覧取得

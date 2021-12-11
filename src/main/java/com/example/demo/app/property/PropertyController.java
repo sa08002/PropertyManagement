@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.demo.entity.Detail;
 import com.example.demo.entity.Property;
 import com.example.demo.service.DetailService;
+import com.example.demo.service.PropertyIdDuplicateException;
 import com.example.demo.service.PropertyService;
 
 @Controller
@@ -78,7 +79,7 @@ public class PropertyController {
 			model.addAttribute("title", "投稿フォーム");
 			return "property/form_boot";
 		}
-		
+
 		Property property = new Property();
 		Detail detail = new Detail();
 		property.setId(propertyForm.getId());
@@ -93,19 +94,27 @@ public class PropertyController {
 		detail.setDetail4(propertyForm.getDetail4());
 		detail.setDetail5(propertyForm.getDetail5());
 		
-		switch(property.getId()) {
-		case 0:
-			property.setCreated(LocalDateTime.now());
-			model.addAttribute("title", "登録しました！");
-			propertyService.save(property);
-			detailService.save(detail);
-			break;
-		default:
-			model.addAttribute("title", "変更しました！");
-			propertyService.update(property);
-			detailService.update(detail, property.getId());
+		try {
+			switch(property.getId()) {
+			case 0:
+				property.setCreated(LocalDateTime.now());
+				model.addAttribute("title", "登録しました！");
+				propertyService.save(property);
+				detailService.save(detail);
+				break;
+			default:
+				model.addAttribute("title", "変更しました！");
+				propertyService.update(property);
+				detailService.update(detail, property.getId());
+			}
+			return "/property/completion";
+		} catch(PropertyIdDuplicateException e) {
+			model.addAttribute("title", "エラーが発生しました");
+			model.addAttribute("message", e);
+			return "error/CustomPage";
 		}
-		return "/property/completion";
+		
+
 	}
 	
 // 	一覧表示
