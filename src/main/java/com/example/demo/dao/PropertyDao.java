@@ -20,6 +20,9 @@ public interface PropertyDao {
 	
 //	削除処理
 	void delete(int id);
+	
+//	物件No生成
+	int generationId();
 
 
 }

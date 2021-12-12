@@ -49,4 +49,10 @@ public class PropertyServiceImpl implements PropertyService {
 		dao.delete(id);
 	}
 
+//	物件No生成
+	@Override
+	public int generationId() {
+		return dao.generationId();
+	}
+
 }

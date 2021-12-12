@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 public class Property {
 	
 	private int id;
+	private int propertyId;
 	private String propertyName;
 	private String address;
 	private String tel1;
@@ -13,11 +14,12 @@ public class Property {
 	
 	public Property() {}
 	
-	public Property(int id, String propertyName,  String address, 
+	public Property(int id, int propertyId, String propertyName,  String address, 
 			String tel1, String email, 
 			LocalDateTime created) {
 		super();
 		this.id = id;
+		this.propertyId =propertyId;
 		this.propertyName = propertyName;
 		this.address = address;
 		this.tel1 = tel1;
@@ -25,12 +27,21 @@ public class Property {
 		this.created = created;
 	}
 
+
 	public int getId() {
 		return id;
 	}
 
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	public int getPropertyId() {
+		return propertyId;
+	}
+
+	public void setPropertyId(int propertyId) {
+		this.propertyId = propertyId;
 	}
 
 	public String getPropertyName() {

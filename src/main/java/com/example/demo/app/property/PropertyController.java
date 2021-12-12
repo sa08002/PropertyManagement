@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.demo.entity.Detail;
 import com.example.demo.entity.Property;
 import com.example.demo.service.DetailService;
+import com.example.demo.service.PropertyIdDuplicateException;
 import com.example.demo.service.PropertyService;
 
 @Controller
@@ -36,6 +37,13 @@ public class PropertyController {
 //	投稿フォーム
 	@GetMapping("/form")
 	public String form(PropertyForm propertyForm, Model model) {
+		
+//		新規登録時、物件Noの取得
+		if(propertyForm.getPropertyId() == 0) {
+			int propertyId = propertyService.generationId();
+			propertyForm.setPropertyId(propertyId);
+		}
+		
 		model.addAttribute("title", "投稿フォーム");
 		return "property/form_boot";
 	}
@@ -71,10 +79,11 @@ public class PropertyController {
 			model.addAttribute("title", "投稿フォーム");
 			return "property/form_boot";
 		}
-		
+
 		Property property = new Property();
 		Detail detail = new Detail();
 		property.setId(propertyForm.getId());
+		property.setPropertyId(propertyForm.getPropertyId());
 		property.setPropertyName(propertyForm.getPropertyName());
 		property.setAddress(propertyForm.getAddress());
 		property.setTel1(propertyForm.getTel1());
@@ -85,19 +94,27 @@ public class PropertyController {
 		detail.setDetail4(propertyForm.getDetail4());
 		detail.setDetail5(propertyForm.getDetail5());
 		
-		switch(property.getId()) {
-		case 0:
-			property.setCreated(LocalDateTime.now());
-			model.addAttribute("title", "登録しました！");
-			propertyService.save(property);
-			detailService.save(detail);
-			break;
-		default:
-			model.addAttribute("title", "変更しました！");
-			propertyService.update(property);
-			detailService.update(detail, property.getId());
+		try {
+			switch(property.getId()) {
+			case 0:
+				property.setCreated(LocalDateTime.now());
+				model.addAttribute("title", "登録しました！");
+				propertyService.save(property);
+				detailService.save(detail);
+				break;
+			default:
+				model.addAttribute("title", "変更しました！");
+				propertyService.update(property);
+				detailService.update(detail, property.getId());
+			}
+			return "/property/completion";
+		} catch(PropertyIdDuplicateException e) {
+			model.addAttribute("title", "エラーが発生しました");
+			model.addAttribute("message", e);
+			return "error/CustomPage";
 		}
-		return "/property/completion";
+		
+
 	}
 	
 // 	一覧表示
@@ -132,6 +149,7 @@ public class PropertyController {
 		Detail detail = new Detail();
 		detail = detailService.confirm(id);
 		propertyForm.setId(id);
+		propertyForm.setPropertyId(property.getPropertyId());
 		propertyForm.setPropertyName(property.getPropertyName());
 		propertyForm.setAddress(property.getAddress());
 		propertyForm.setTel1(property.getTel1());

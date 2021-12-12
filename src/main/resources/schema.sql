@@ -1,12 +1,14 @@
 CREATE TABLE property
 (
 	id INT NOT NULL AUTO_INCREMENT,
+	property_id int(8)NOT NULL,
 	property_name VARCHAR(100) NOT NULL,
 	address VARCHAR(100) NOT NULL,
 	tel1 VARCHAR(16) NOT NULL,
 	email VARCHAR(100),
 	created DATETIME NOT NULL,
-	PRIMARY KEY(id)
+	PRIMARY KEY(id),
+	UNIQUE  KEY(property_id)
 );
 
 CREATE TABLE detail

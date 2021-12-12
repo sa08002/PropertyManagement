@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.79.0">
-    <title th:text="${title}">Starter Template for Bootstrap · Bootstrap v5.0</title>
+    <title th:text="${title}">Error</title>
 
     <link rel="canonical" href="https://getbootstrap.jp/docs/5.0/examples/starter-template/">
 
@@ -50,48 +50,16 @@
 
    
 <main class="container">
-
-	<form method="get" action="#" th:action="@{/property/form}">
-		<button type="submit" class="btn btn-dark">物件投稿</button>
+	
+	<h1>Error</h1>
+	<p th:text="${message}">Error occurred.</p>
+	
+	
+	<form method="get" action="#" th:action="@{/property/index}" class="mt-5">
+		<button type="submit" class="btn btn-dark">物件一覧</button>
 	</form>
   
-  <div class="starter-template text-center py-5 px-3">
-    <h1 th:text="${title}">Bootstrap スターターテンプレート</h1>
-  </div>
-
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">物件No</th>
-      <th scope="col">物件名</th>
-      <th scope="col">住所</th>
-      <th scope="col">電話番号</th>
-      <th scope="col">メールアドレス</th>
-      <th scope="col"></th>
-      <th scope="col"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr th:each="property : ${propertyList}">
-      <th scope="row" th:text="${property.propertyId}">1</th>
-      <td th:text="${property.propertyName}">propertyName</td>
-      <td th:text="${property.address}">address</td>
-      <td th:text="${property.tel1}">tel1</td>
-      <td th:text="${property.email}">email</td>
-      <td>
-			<form method="get" action="#" th:action="@{/property/detail/{id}(id=${property.id})}">
-				<input type="submit" value="詳細">
-			</form>
-		</td>
-		<td>
-			<form method="get" action="#" th:action="@{/property/delete/{id}(id=${property.id})}" >
-				<input type="submit" value="削除">
-			</form>
-		</td>
-    </tr>
-  </tbody>
-</table>
-
+ 
 </main><!-- /.container -->
 
 
@@ -100,3 +68,4 @@
       
   </body>
 </html>
+

@@ -6,6 +6,7 @@ import javax.validation.constraints.NotNull;
 public class PropertyForm {
 	
 	private int id;
+	private int propertyId;
 	@NotNull
 	private String propertyName;
 	@NotNull
@@ -30,6 +31,14 @@ public class PropertyForm {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	public int getPropertyId() {
+		return propertyId;
+	}
+
+	public void setPropertyId(int propertyId) {
+		this.propertyId = propertyId;
 	}
 	
 	public String getPropertyName() {
