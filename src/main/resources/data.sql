@@ -1,3 +1,7 @@
+INSERT INTO user_pass(user, password)
+VALUES('user', '$2a$10$g/h4NtPsF2dhUOug2gxky.Op5FEsO7S1EHhAlVWF2GCfjhjV531US');
+
+
 INSERT INTO property(property_id, property_name, address, tel1, email, created)
 VALUES(20200001, 'アンチョビットゲームズ', '東京県アンチョビ3丁目', '99999999999', 'aaa@exampl.com', '2021-10-09 15:10:52');
 INSERT INTO property(property_id, property_name, address, tel1, email, created)

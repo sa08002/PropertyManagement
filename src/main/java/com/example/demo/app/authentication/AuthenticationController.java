@@ -15,12 +15,9 @@ public class AuthenticationController {
     @GetMapping("/eroor")
     public String getLoginError(Model model) {
     	model.addAttribute("ErrorMessage","*ユーザー名もしくはパスワードが一致しません");
+    	System.out.println("あ");
         return "/authentication/login";
     }
 
-    //デフォルトではPostでリクエストが発生。カスタマイズ時はユーザーが指定したmethodに従う。
-//    @PostMapping("/login")
-//    public String postLogin(Model model) {
-//        return "sample";
-//    }
+
 }
