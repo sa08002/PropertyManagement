@@ -8,14 +8,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class AuthenticationController {
 
 	@GetMapping("/login")
-    public String getLogin(Model model) {
+    public String getLogin() {
         return "/authentication/login";
     }
 
-    @GetMapping("/eroor")
+    @GetMapping("/login-error")
     public String getLoginError(Model model) {
-    	model.addAttribute("ErrorMessage","*ユーザー名もしくはパスワードが一致しません");
-    	System.out.println("あ");
+    	model.addAttribute("ErrorMessage","ユーザー名もしくはパスワードが一致しません");
         return "/authentication/login";
     }
 

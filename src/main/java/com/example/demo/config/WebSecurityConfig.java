@@ -43,7 +43,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.usernameParameter("username")
 		.passwordParameter("password")
 		.defaultSuccessUrl("/property/index", true)
-    	.failureUrl("/eroor")
+    	.failureUrl("/login-error")
+    	.permitAll();
+    http.logout()
     	.permitAll();
     }
     
@@ -55,7 +57,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .withUser("user")
         .password(passwordEncoder().encode("pass"))
         .roles("USER");
-        System.out.println(new BCryptPasswordEncoder().encode("pass"));
 
     }
 
