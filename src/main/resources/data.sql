@@ -1,5 +1,7 @@
-INSERT INTO user_pass(user, password)
-VALUES('user', '$2a$10$g/h4NtPsF2dhUOug2gxky.Op5FEsO7S1EHhAlVWF2GCfjhjV531US');
+INSERT INTO user(employee, name, password, authority)
+VALUES('ユーザー太郎', 'user', '$2a$10$XdunTUKt5ziNkUjxEmSP4udGG8WFP/Mq0GJaYeuixLnPB8a3DhcqK', 'ROLE_USER');
+INSERT INTO user(employee, name, password, authority)
+VALUES('admin一郎', 'admin', '$2a$10$uMuxlUCxli0dNoXMWiPIyes5iufSqjiQIAGphWZRLpu5WcUvbR.KO', 'ROLE_USER');
 
 
 INSERT INTO property(property_id, property_name, address, tel1, email, created)
