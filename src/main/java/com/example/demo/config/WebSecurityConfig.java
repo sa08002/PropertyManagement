@@ -37,18 +37,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 	http.authorizeRequests()
 //		ログインしてなくても遷移できるリクエスト
-		.antMatchers("/login").permitAll()//1
+		.antMatchers("/user/login").permitAll()//1
 		.anyRequest().authenticated();//2
     
 	http.formLogin()//3
 //		ログインページのリクエスト先
-		.loginPage("/login")
+		.loginPage("/user/login")
 		.usernameParameter("username")
 		.passwordParameter("password")
 //		ログイン後の遷移先
 		.defaultSuccessUrl("/property/index", true)
 //		エラー発生時のリクエスト先
-    	.failureUrl("/login-error")
+    	.failureUrl("/user/login-error")
     	.permitAll();
     http.logout()
     	.permitAll();
