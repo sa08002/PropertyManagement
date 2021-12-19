@@ -1,4 +1,4 @@
-package com.example.demo.app.authentication;
+package com.example.demo.app.user;
 
 import java.util.Collection;
 
@@ -7,17 +7,19 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 public class UserDetailsImpl implements UserDetails {
     private static final long serialVersionUID = 1L;
+    private String employee;
     private String username;
     private String password;
     private Collection<GrantedAuthority> authorities;
 
-    public UserDetailsImpl(String username, String password, Collection<GrantedAuthority> authorities) {
+    public UserDetailsImpl(String employee, String username, String password, Collection<GrantedAuthority> authorities) {
+    	this.employee = employee;
         this.username = username;
         this.password = password;
         this.authorities = authorities;
     }
 
-    @Override
+	@Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return authorities;
     }
@@ -45,4 +47,12 @@ public class UserDetailsImpl implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+    
+    public String getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(String employee) {
+		this.employee = employee;
+	}
 }

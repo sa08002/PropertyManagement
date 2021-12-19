@@ -30,24 +30,33 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring()
-        		.antMatchers("/images/**","/css/**","/js/**");
+        		.antMatchers("/images/**","/css/**","/js/**","/h2-console/**");
     }
     
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 	http.authorizeRequests()
+//		ログインしてなくても遷移できるリクエスト
 		.antMatchers("/login").permitAll()//1
 		.anyRequest().authenticated();//2
     
 	http.formLogin()//3
+//		ログインページのリクエスト先
 		.loginPage("/login")
 		.usernameParameter("username")
 		.passwordParameter("password")
+//		ログイン後の遷移先
 		.defaultSuccessUrl("/property/index", true)
+//		エラー発生時のリクエスト先
     	.failureUrl("/login-error")
     	.permitAll();
     http.logout()
     	.permitAll();
+    
+    http.headers().frameOptions().disable();
+    
+    http.csrf().ignoringAntMatchers("/h2-console/**");
+    
     }
     
     
