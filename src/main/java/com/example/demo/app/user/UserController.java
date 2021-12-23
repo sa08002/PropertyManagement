@@ -1,5 +1,7 @@
 package com.example.demo.app.user;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
@@ -17,6 +19,15 @@ public class UserController {
 	
     @Autowired
     private UserDetailsServiceImpl userDetailsServiceImpl;
+    
+//  ログイン画面
+	@GetMapping("/index")
+    public String getIndex(Model model) {
+		List<UserDetailsImpl> list = userDetailsServiceImpl.getAll();
+		model.addAttribute("userList", list);
+		model.addAttribute("title", "従業員一覧");
+        return "/user/index";
+    }
 
 //  ログイン画面
 	@GetMapping("/login")

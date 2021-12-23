@@ -7,12 +7,17 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 public class UserDetailsImpl implements UserDetails {
     private static final long serialVersionUID = 1L;
+    private int id;
     private String employee;
     private String username;
     private String password;
     private Collection<GrantedAuthority> authorities;
+    
+    public UserDetailsImpl() {
+    }
 
-    public UserDetailsImpl(String employee, String username, String password, Collection<GrantedAuthority> authorities) {
+    public UserDetailsImpl(int id, String employee, String username, String password, Collection<GrantedAuthority> authorities) {
+    	this.id = id;
     	this.employee = employee;
         this.username = username;
         this.password = password;
@@ -23,13 +28,22 @@ public class UserDetailsImpl implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return authorities;
     }
+    public void setAuthorities(Collection<GrantedAuthority> authorities) {
+        this.authorities = authorities;
+    }
     @Override
     public String getPassword() {
         return password;
     }
+    public void setPassword(String password) {
+        this.password = password;
+    }
     @Override
     public String getUsername() {
         return username;
+    }
+    public void setUsername(String username) {
+        this.username = username;
     }
     @Override
     public boolean isAccountNonExpired() {
@@ -47,11 +61,15 @@ public class UserDetailsImpl implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-    
-    public String getEmployee() {
+    public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getEmployee() {
 		return employee;
 	}
-
 	public void setEmployee(String employee) {
 		this.employee = employee;
 	}
