@@ -61,7 +61,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 			UserDetailsImpl userDetailImpl = new UserDetailsImpl();
 			userDetailImpl.setId((int)result.get("id"));
 			userDetailImpl.setEmployee((String)result.get("employee"));			
-			userDetailImpl.setUsername((String)result.get("employee"));
+			userDetailImpl.setUsername((String)result.get("name"));
 			userDetailImpl.setPassword((String)result.get("password"));
             Collection<GrantedAuthority> authorities = new ArrayList<>();
             authorities.add(new SimpleGrantedAuthority((String)result.get("authority")));
