@@ -60,7 +60,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		for(Map<String, Object> result : resultList) {
 			UserDetailsImpl userDetailImpl = new UserDetailsImpl();
 			userDetailImpl.setId((int)result.get("id"));
-			userDetailImpl.setEmployee((String)result.get("employee"));			
+			userDetailImpl.setEmployee((String)result.get("employee"));
 			userDetailImpl.setUsername((String)result.get("name"));
 			userDetailImpl.setPassword((String)result.get("password"));
             Collection<GrantedAuthority> authorities = new ArrayList<>();
