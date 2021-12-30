@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +16,7 @@ import com.example.demo.service.UserDetailsServiceImpl;
 
 
 @Controller
-@RequestMapping(value = { "/user", "" })
+@RequestMapping("/user")
 public class UserController {
 	
     @Autowired
@@ -50,14 +52,20 @@ public class UserController {
     
 //  新規登録処理
     @PostMapping("/signup")
-    public String signup(SignupForm signupForm, Model model) {
+    public String signup(@Validated SignupForm signupForm, BindingResult result, Model model) {
+    	
+		if(result.hasErrors()) {
+			model.addAttribute("title", "投稿フォーム");
+			return "property/form_boot";
+		}
+		
         try {
             userDetailsServiceImpl.register(signupForm.getEmployee(), signupForm.getUsername(), signupForm.getPassword(), "ROLE_USER");
         } catch (DataAccessException e) {
-            model.addAttribute("signupError", "ユーザー登録に失敗しました");
+            model.addAttribute("signupError", "登録に失敗しました");
             return "user/signup";
         }
-        return "redirect:property/index";
+        return "redirect:/user/index";
     }
     
 
